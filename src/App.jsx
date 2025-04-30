@@ -10,14 +10,12 @@ const App = () => {
     <Routes>
       <Route
         path="/"
-        element={<Navigate to={token ? "/dashboard" : "/signup"} />}
+        element={<Navigate to={"/signup"} />}
       />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route
-        path="/dashboard"
-        element={token ? <Dashboard /> : <Navigate to="/login" replace />}
-      />
+        path="/dashboard" element={<Dashboard /> } />
       <Route
         path="*"
         element={
