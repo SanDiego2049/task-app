@@ -33,7 +33,26 @@ const Signup = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Registration failed");
+        const errorData = await response.json();
+
+        if (
+          response.status === 400 &&
+          errorData.detail?.includes("already exists")
+        ) {
+          setError("User already exists. Please log in.");
+          toast.error("User already exists. Please log in.", {
+            id: loadingToastId,
+          });
+        } else {
+          setError("Something went wrong. Please try again.");
+          toast.error("Signup failed. Please try again.", {
+            id: loadingToastId,
+          });
+        }
+
+        console.log(errorData);
+        setLoading(false);
+        return; 
       }
 
       const body = new URLSearchParams();
