@@ -37,7 +37,7 @@ const Signup = () => {
 
         if (
           response.status === 400 &&
-          errorData.detail?.includes("already exists")
+          errorData.detail?.includes("Email already registered")
         ) {
           setError("User already exists. Please log in.");
           toast.error("User already exists. Please log in.", {
@@ -52,7 +52,7 @@ const Signup = () => {
 
         console.log(errorData);
         setLoading(false);
-        return; 
+        return;
       }
 
       const body = new URLSearchParams();
